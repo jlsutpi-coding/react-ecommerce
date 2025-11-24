@@ -1,5 +1,12 @@
+import { Header } from "../components/Header";
+
 function Orders() {
-  return <>Orders Page</>;
+  return (
+    <>
+      <Header />
+      <div className="order-page"></div>
+    </>
+  );
 }
 
 export default Orders;
