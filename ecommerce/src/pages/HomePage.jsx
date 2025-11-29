@@ -3,9 +3,8 @@ import axios from "axios";
 import { Header } from "../components/Header";
 import "./HomePage.css";
 
-function HomePage() {
+function HomePage({ cart }) {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     // fetch("http://localhost:3000/api/products")
@@ -13,8 +12,6 @@ function HomePage() {
     //   .then((data) => setProducts(data));
 
     axios.get("/api/products").then((response) => setProducts(response.data));
-
-    axios.get("/api/cart-items").then((response) => setCart(response.data));
   }, []);
   console.log(cart);
   return (

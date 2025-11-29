@@ -1,6 +1,8 @@
+import { Fragment } from "react";
 import "./Checkout.css";
 import { CheckoutHeader } from "./CheckoutHeader";
-function Checkout() {
+import dayjs from "dayjs";
+function Checkout({ cart }) {
   return (
     <>
       <link rel="icon" href="favicon/cart-favicon.png" />
@@ -12,262 +14,102 @@ function Checkout() {
         <div className="page-title">Review you order</div>
         <div className="checkout-grid">
           <div className="order-summary">
-            <div className="cart-item-container ">
-              <div className="delivery-date">Delivery day: Tuesday June 21</div>
-              <div className="cart-item-detail-grid">
-                <img
-                  src="images/products/2-slot-toaster-white.jpg"
-                  className="product-img"
-                  alt=""
-                />
-                <div className="cart-item-details">
-                  <div className="cart-title">
-                    Black and Gray Athletic Cotton Socks- 6 Pair
-                  </div>
-                  <div className="cart-price"> $ 10.90</div>
-                  <div className="cart-quantity">
-                    {" "}
-                    Quantity : 1{" "}
-                    <span className="update-quantity-link link-primary">
-                      Update
-                    </span>{" "}
-                    <span className="update-quantity-link link-primary">
-                      Delete
-                    </span>
-                  </div>
-                </div>
-                <div className="delivery-option-container">
-                  <div className="delivery-option-title">
-                    Choose a delivery option:{" "}
-                  </div>
+            {cart.map((cartItem) => {
+              return (
+                <Fragment key={cartItem.id}>
+                  <div className="cart-item-container ">
+                    <div className="delivery-date">
+                      Delivery day:{" "}
+                      {dayjs(cartItem.updateAt).format("dddd MMMM D")}
+                    </div>
+                    <div className="cart-item-detail-grid">
+                      <img
+                        src={cartItem.product.image}
+                        className="product-img"
+                        alt=""
+                      />
+                      <div className="cart-item-details">
+                        <div className="cart-title">
+                          {cartItem.product.name}
+                        </div>
+                        <div className="cart-price">
+                          ${(cartItem.product.priceCents / 100).toFixed(2)}
+                        </div>
+                        <div className="cart-quantity">
+                          Quantity : {cartItem.quantity}
+                          <span className="update-quantity-link link-primary">
+                            Update
+                          </span>
+                          <span className="update-quantity-link link-primary">
+                            Delete
+                          </span>
+                        </div>
+                      </div>
+                      <div className="delivery-option-container">
+                        <div className="delivery-option-title">
+                          Choose a delivery option:
+                        </div>
 
-                  <div className="delivery-option">
-                    <input
-                      className="delivery-option-input"
-                      name="delivery-date"
-                      type="radio"
-                      id=""
-                    />
-                    <label htmlFor="">
-                      <div>
-                        <div className="delivery-option-date">
-                          Tuesday, June 21
+                        <div className="delivery-option">
+                          <input
+                            className="delivery-option-input"
+                            name="delivery-date"
+                            type="radio"
+                            id=""
+                          />
+                          <label htmlFor="">
+                            <div>
+                              <div className="delivery-option-date">
+                                Tuesday, June 21
+                              </div>
+                              <div className="delivery-option-price">
+                                Free Shipping
+                              </div>
+                            </div>
+                          </label>
                         </div>
-                        <div className="delivery-option-price">
-                          Free Shipping
+                        <div className="delivery-option">
+                          <input
+                            className="delivery-option-input"
+                            name="delivery-date"
+                            type="radio"
+                            id=""
+                          />
+                          <label htmlFor="">
+                            <div>
+                              <div className="delivery-option-date">
+                                Tuesday, June 21
+                              </div>
+                              <div className="delivery-option-price">
+                                Free Shipping
+                              </div>
+                            </div>
+                          </label>
                         </div>
-                      </div>
-                    </label>
-                  </div>
-                  <div className="delivery-option">
-                    <input
-                      className="delivery-option-input"
-                      name="delivery-date"
-                      type="radio"
-                      id=""
-                    />
-                    <label htmlFor="">
-                      <div>
-                        <div className="delivery-option-date">
-                          Tuesday, June 21
-                        </div>
-                        <div className="delivery-option-price">
-                          Free Shipping
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-                  <div className="delivery-option">
-                    <input
-                      className="delivery-option-input"
-                      name="delivery-date"
-                      type="radio"
-                      id=""
-                    />
-                    <label htmlFor="">
-                      <div>
-                        <div className="delivery-option-date">
-                          Tuesday, June 21
-                        </div>
-                        <div className="delivery-option-price">
-                          Free Shipping
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="cart-item-container ">
-              <div className="delivery-date">Delivery day: Tuesday June 21</div>
-              <div className="cart-item-detail-grid">
-                <img
-                  src="images/products/intermediate-composite-basketball.jpg"
-                  className="product-img"
-                  alt=""
-                />
-                <div className="cart-item-details">
-                  <div className="cart-title">Intermediate Size Basketball</div>
-                  <div className="cart-price">$20.95</div>
-                  <div className="cart-quantity">
-                    {" "}
-                    Quantity : 1{" "}
-                    <span className="update-quantity-link link-primary">
-                      Update
-                    </span>{" "}
-                    <span className="update-quantity-link link-primary">
-                      Delete
-                    </span>
-                  </div>
-                </div>
-                <div className="delivery-option-container">
-                  <div className="delivery-option-title">
-                    Choose a delivery option:{" "}
-                  </div>
-
-                  <div className="delivery-option">
-                    <input
-                      className="delivery-option-input"
-                      name="delivery-date"
-                      type="radio"
-                      id=""
-                    />
-                    <label htmlFor="">
-                      <div>
-                        <div className="delivery-option-date">
-                          Tuesday, June 21
-                        </div>
-                        <div className="delivery-option-price">
-                          Free Shipping
+                        <div className="delivery-option">
+                          <input
+                            className="delivery-option-input"
+                            name="delivery-date"
+                            type="radio"
+                            id=""
+                          />
+                          <label htmlFor="">
+                            <div>
+                              <div className="delivery-option-date">
+                                Tuesday, June 21
+                              </div>
+                              <div className="delivery-option-price">
+                                Free Shipping
+                              </div>
+                            </div>
+                          </label>
                         </div>
                       </div>
-                    </label>
+                    </div>
                   </div>
-                  <div className="delivery-option">
-                    <input
-                      className="delivery-option-input"
-                      name="delivery-date"
-                      type="radio"
-                      id=""
-                    />
-                    <label htmlFor="">
-                      <div>
-                        <div className="delivery-option-date">
-                          Tuesday, June 21
-                        </div>
-                        <div className="delivery-option-price">
-                          Free Shipping
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-                  <div className="delivery-option">
-                    <input
-                      className="delivery-option-input"
-                      name="delivery-date"
-                      type="radio"
-                      id=""
-                    />
-                    <label htmlFor="">
-                      <div>
-                        <div className="delivery-option-date">
-                          Tuesday, June 21
-                        </div>
-                        <div className="delivery-option-price">
-                          Free Shipping
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="cart-item-container ">
-              <div className="delivery-date">Delivery day: Tuesday June 21</div>
-              <div className="cart-item-detail-grid">
-                <img
-                  src="images/products/2-slot-toaster-white.jpg"
-                  className="product-img"
-                  alt=""
-                />
-                <div className="cart-item-details">
-                  <div className="cart-title">
-                    Black and Gray Athletic Cotton Socks- 6 Pair
-                  </div>
-                  <div className="cart-price"> $ 10.90</div>
-                  <div className="cart-quantity">
-                    {" "}
-                    Quantity : 1{" "}
-                    <span className="update-quantity-link link-primary">
-                      Update
-                    </span>{" "}
-                    <span className="update-quantity-link link-primary">
-                      Delete
-                    </span>
-                  </div>
-                </div>
-                <div className="delivery-option-container">
-                  <div className="delivery-option-title">
-                    Choose a delivery option:{" "}
-                  </div>
-
-                  <div className="delivery-option">
-                    <input
-                      className="delivery-option-input"
-                      name="delivery-date"
-                      type="radio"
-                      id=""
-                    />
-                    <label htmlFor="">
-                      <div>
-                        <div className="delivery-option-date">
-                          Tuesday, June 21
-                        </div>
-                        <div className="delivery-option-price">
-                          Free Shipping
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-                  <div className="delivery-option">
-                    <input
-                      className="delivery-option-input"
-                      name="delivery-date"
-                      type="radio"
-                      id=""
-                    />
-                    <label htmlFor="">
-                      <div>
-                        <div className="delivery-option-date">
-                          Tuesday, June 21
-                        </div>
-                        <div className="delivery-option-price">
-                          Free Shipping
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-                  <div className="delivery-option">
-                    <input
-                      className="delivery-option-input"
-                      name="delivery-date"
-                      type="radio"
-                      id=""
-                    />
-                    <label htmlFor="">
-                      <div>
-                        <div className="delivery-option-date">
-                          Tuesday, June 21
-                        </div>
-                        <div className="delivery-option-price">
-                          Free Shipping
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
+                </Fragment>
+              );
+            })}
           </div>
           <div className="payment-summary">
             <div className="payment-summary-title"> Payment Summary</div>
