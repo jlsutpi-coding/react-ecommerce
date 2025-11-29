@@ -46,6 +46,9 @@
 .header .mobile-logo {
   display: none;
 }
+.header-link.active {
+  text-decoration: underline;
+}
 
 @media (max-width: 675px) {
   .header .logo {
