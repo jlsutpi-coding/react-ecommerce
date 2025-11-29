@@ -57,7 +57,7 @@ function Orders() {
               </div>
 
               <div className="product-actions">
-                <Link className="link" to="/tracking/sdfderlkadl">
+                <Link className="link" to="/tracking">
                   <button className=" track-pakage-button product-secondary">
                     Track Pakage
                   </button>
@@ -88,7 +88,7 @@ function Orders() {
                 </button>
               </div>
               <div className="product-actions">
-                <Link className="link" to="/tracking/sdfderlkadl">
+                <Link className="link" to="/tracking">
                   <button className=" track-pakage-button product-secondary">
                     Track Pakage
                   </button>
@@ -142,7 +142,7 @@ function Orders() {
               </div>
 
               <div className="product-actions">
-                <Link className="link" to="/tracking/sdfderlkadl">
+                <Link className="link" to="/tracking">
                   <button className=" track-pakage-button product-secondary">
                     Track Pakage
                   </button>
@@ -173,7 +173,7 @@ function Orders() {
                 </button>
               </div>
               <div className="product-actions">
-                <Link className="link" to="/tracking/sdfderlkadl">
+                <Link className="link" to="/tracking">
                   <button className=" track-pakage-button product-secondary">
                     Track Pakage
                   </button>
