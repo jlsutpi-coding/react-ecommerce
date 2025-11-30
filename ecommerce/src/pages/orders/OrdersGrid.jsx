@@ -37,7 +37,10 @@ export const OrdersGrid = ({ order }) => {
             </div>
 
             <div className="product-actions">
-              <Link className="link" to="/tracking">
+              <Link
+                className="link"
+                to={`/tracking/${order.id}/${orderProduct.productId}`}
+              >
                 <button className=" track-pakage-button product-secondary">
                   Track Pakage
                 </button>
