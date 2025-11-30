@@ -25,6 +25,14 @@ const Tracking = ({ cart }) => {
   const productDetail = order.products.find(
     (orderProduct) => orderProduct.productId === productId
   );
+
+  const totalDeliveryTimesMs =
+    productDetail.estimatedDeliveryTimeMs - order.orderTimeMs;
+  const timePassedMs = dayjs().valueOf() - order.orderTimeMs;
+  let deliveryPercent = (timePassedMs / totalDeliveryTimesMs) * 100;
+  if (deliveryPercent > 100) {
+    deliveryPercent = 100;
+  }
   return (
     <>
       <link rel="icon" href="favicon/tracking-favicon.png" />
@@ -37,7 +45,7 @@ const Tracking = ({ cart }) => {
         </Link>
 
         <div className="tracking-delivery-date">
-          Delivered on
+          {deliveryPercent >= 100 ? "Delivered on" : "Ariving on"}
           {dayjs(productDetail.estimatedDeliveryTimeMs).format(" dddd, MMMM D")}
         </div>
 
@@ -50,11 +58,20 @@ const Tracking = ({ cart }) => {
         <img src={productDetail.product.image} alt="product-img" />
 
         <div className="range-labels">
-          <div></div>
-          <div></div>
-          <div>isDelivered</div>
+          <div className="progress-label">
+            {deliveryPercent < 33 ? "isPreparing" : ""}
+          </div>
+          <div className="progress-label current-status">
+            {deliveryPercent >= 33 && deliveryPercent < 100 ? "isShipping" : ""}
+          </div>
+          <div className="progress-label">
+            {deliveryPercent === 100 ? "isDeilvered" : ""}
+          </div>
         </div>
-        <div className="progress-bar"></div>
+        <div
+          className="progress-bar"
+          style={{ width: `${deliveryPercent}%` }}
+        ></div>
       </div>
     </>
   );
