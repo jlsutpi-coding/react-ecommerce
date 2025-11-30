@@ -1,0 +1,40 @@
+.tracking-page {
+  margin-top: 90px;
+  max-width: 850px;
+  margin-inline: auto;
+  display: grid;
+  row-gap: 30px;
+  padding-inline: 30px;
+  margin-bottom: 100px;
+}
+.tracking-delivery-date {
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.tracking-product-name {
+  margin-bottom: 10px;
+}
+
+.tracking-page img {
+  max-width: 150px;
+  max-height: 150px;
+  margin-top: 25px;
+  margin-bottom: 50px;
+}
+.range-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.range-labels div {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.progress-bar {
+  border-radius: 15px;
+  background-color: rgb(25, 135, 84);
+  height: 25px;
+  width: 100%;
+}
