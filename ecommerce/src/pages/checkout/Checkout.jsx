@@ -7,13 +7,18 @@ import { fromatMoney } from "../../utils/formatMoney";
 
 function Checkout({ cart }) {
   const [deliveryOptions, setDeliveryOptions] = useState([]);
+  const [paymentSummary, setPaymentSummary] = useState(null);
 
   useEffect(() => {
     axios
       .get("/api/delivery-options?expand=estimatedDeliveryTime")
       .then((response) => setDeliveryOptions(response.data));
+
+    axios
+      .get("/api/payment-summary")
+      .then((response) => setPaymentSummary(response.data));
   }, []);
-  console.log(deliveryOptions);
+
   return (
     <>
       <link rel="icon" href="favicon/cart-favicon.png" />
@@ -109,32 +114,38 @@ function Checkout({ cart }) {
                 );
               })}
           </div>
-          <div className="payment-summary">
-            <div className="payment-summary-title"> Payment Summary</div>
-            <div className="payment-summary-row">
-              <div>
-                Item {"("}3{")"}:
+          {paymentSummary && (
+            <div className="payment-summary">
+              <div className="payment-summary-title"> Payment Summary</div>
+              <div className="payment-summary-row">
+                <div>
+                  Item {"("}
+                  {paymentSummary.totalItems}
+                  {")"}:
+                </div>
+                <div>{fromatMoney(paymentSummary.productCostCents)}</div>
               </div>
-              <div>$42.75</div>
-            </div>
-            <div className="payment-summary-row">
-              <div>Shipping &amp; handling:</div>
-              <div>$4.99</div>
-            </div>
-            <div className="payment-summary-row subtotal-row">
-              <div>Total before tax:</div>
-              <div className="payment-summary-money">$47.74</div>
-            </div>
+              <div className="payment-summary-row">
+                <div>Shipping &amp; handling:</div>
+                <div>{fromatMoney(paymentSummary.shippingCostCents)}</div>
+              </div>
+              <div className="payment-summary-row subtotal-row">
+                <div>Total before tax:</div>
+                <div className="payment-summary-money">
+                  {fromatMoney(paymentSummary.totalCostBeforeTaxCents)}
+                </div>
+              </div>
 
-            <div className="payment-summary-row total-row">
-              <div>Order toal: </div>
-              <div>$52.51</div>
-            </div>
+              <div className="payment-summary-row total-row">
+                <div>Order toal: </div>
+                <div>{fromatMoney(paymentSummary.totalCostCents)}</div>
+              </div>
 
-            <button className="place-order-button button-primary">
-              Place your order
-            </button>
-          </div>
+              <button className="place-order-button button-primary">
+                Place your order
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </>
