@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Checkout from "./pages/checkout/Checkout";
-import Orders from "./pages/Orders";
+import Orders from "./pages/orders/Orders";
 import HomePage from "./pages/home/HomePage";
 import { NotFound } from "./pages/NotFound";
 import Tracking from "./pages/Tracking";
@@ -17,6 +17,7 @@ function App() {
     };
     fetchData();
   }, []);
+
   return (
     <Routes>
       <Route path="/" element={<HomePage cart={cart} />} />

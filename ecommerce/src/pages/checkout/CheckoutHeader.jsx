@@ -4,7 +4,8 @@ import Logo from "../../assets/images/logo.png";
 import MobileLogo from "../../assets/images/mobile-logo.png";
 import CheckoutLockIcon from "../../assets/images/icons/checkout-lock-icon.png";
 
-export const CheckoutHeader = () => {
+export const CheckoutHeader = ({ cart }) => {
+  const totalQuantity = cart.reduce((ac, cv) => ac + cv.quantity, 0);
   return (
     <div className="checkout-header">
       <div className="checkout-left-section">
@@ -15,7 +16,7 @@ export const CheckoutHeader = () => {
       </div>
       <div className="checkout-middle-section">
         Checkout {"("}
-        <span className="checkout-cart-quantity">3 items</span>
+        <span className="checkout-cart-quantity">{totalQuantity} items</span>
         {")"}
       </div>
       <div className="checkout-right-section">
