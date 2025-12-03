@@ -1,15 +1,22 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./header.css";
 import MobileLogoWhite from "../assets/images/mobile-logo-white.png";
 import SearchIcon from "../assets/images/icons/search-icon.png";
 import CartIcon from "../assets/images/icons/cart-icon.png";
 import LogoWhite from "../assets/images/logo-white.png";
+import { useRef } from "react";
 
 export function Header({ cart }) {
+  const inputRef = useRef(null);
+  const navigate = useNavigate();
   const totalQuantity = cart.reduce(
     (ac, cartItem) => ac + cartItem.quantity,
     0
   );
+
+  const onSearchBtn = () => {
+    navigate(`/?search=${inputRef.current.value}`);
+  };
   return (
     <div className="header">
       <div className="left-section">
@@ -23,8 +30,13 @@ export function Header({ cart }) {
         </NavLink>
       </div>
       <div className="middle-section">
-        <input type="text" placeholder="Search" className="search-bar" />
-        <button className="search-button">
+        <input
+          ref={inputRef}
+          type="text"
+          placeholder="Search"
+          className="search-bar"
+        />
+        <button onClick={onSearchBtn} className="search-button">
           <img
             src={SearchIcon}
             className="search-icon"
