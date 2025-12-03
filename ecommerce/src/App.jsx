@@ -10,17 +10,18 @@ import axios from "axios";
 function App() {
   const [cart, setCart] = useState([]);
 
+  const getCart = async () => {
+    const response = await axios.get("/api/cart-items?expand=product");
+    setCart(response.data);
+  };
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get("/api/cart-items?expand=product");
-      setCart(response.data);
-    };
-    fetchData();
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    getCart();
   }, []);
 
   return (
     <Routes>
-      <Route path="/" element={<HomePage cart={cart} />} />
+      <Route path="/" element={<HomePage getCart={getCart} cart={cart} />} />
       <Route path="/checkout" element={<Checkout cart={cart} />} />
       <Route path="/orders" element={<Orders cart={cart} />} />
       <Route path="*" element={<NotFound cart={cart} />} />
