@@ -24,6 +24,14 @@ export const PaymentSummary = ({ paymentSummary }) => {
               {fromatMoney(paymentSummary.totalCostBeforeTaxCents)}
             </div>
           </div>
+          <div className="payment-summary-row ">
+            <div>
+              Estimated tax {`(`}10%{`)`}:
+            </div>
+            <div className="payment-summary-money">
+              {fromatMoney(paymentSummary.taxCents)}
+            </div>
+          </div>
 
           <div className="payment-summary-row total-row">
             <div>Order toal: </div>

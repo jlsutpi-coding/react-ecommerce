@@ -1,18 +1,15 @@
 import axios from "axios";
 import { useState } from "react";
 
-export const Product = ({ product, getCart }) => {
-  console.log(product);
+export const Product = ({ product, loadCart }) => {
   const [quantity, setQuantity] = useState(1);
-  console.log(quantity);
-  console.log(getCart);
 
   const addtoCartHandler = async () => {
     await axios.post("/api/cart-items", {
       productId: product.id,
-      quantity: Number(quantity),
+      quantity: quantity,
     });
-    await getCart();
+    await loadCart();
   };
   console.log(quantity);
 
@@ -42,7 +39,10 @@ export const Product = ({ product, getCart }) => {
       <div className="product-price"> $10.90</div>
 
       <div className="product-quantity-container">
-        <select onChange={(e) => setQuantity(e.target.value)} value={quantity}>
+        <select
+          onChange={(e) => setQuantity(Number(e.target.value))}
+          value={quantity}
+        >
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>

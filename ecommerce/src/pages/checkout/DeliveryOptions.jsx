@@ -12,7 +12,7 @@ export const DeliveryOptions = ({ deliveryOptions, cartItem }) => {
               className="delivery-option-input"
               name={`delivery-option-${cartItem.product.id}`}
               type="radio"
-              checked={deliveryOption.id === cartItem.deliveryOptionId}
+              defaultChecked={deliveryOption.id === cartItem.deliveryOptionId}
             />
             <div>
               <div>
