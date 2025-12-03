@@ -1,6 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import { fromatMoney } from "../../utils/formatMoney";
+import axios from "axios";
 
-export const PaymentSummary = ({ paymentSummary }) => {
+export const PaymentSummary = ({ paymentSummary, loadCart }) => {
+  const navigate = useNavigate();
+
+  const onPlaceOrder = async () => {
+    await axios.post("/api/orders");
+    await loadCart();
+    navigate(`/orders`);
+  };
   return (
     <>
       {paymentSummary && (
@@ -24,13 +33,24 @@ export const PaymentSummary = ({ paymentSummary }) => {
               {fromatMoney(paymentSummary.totalCostBeforeTaxCents)}
             </div>
           </div>
+          <div className="payment-summary-row ">
+            <div>
+              Estimated tax {`(`}10%{`)`}:
+            </div>
+            <div className="payment-summary-money">
+              {fromatMoney(paymentSummary.taxCents)}
+            </div>
+          </div>
 
           <div className="payment-summary-row total-row">
             <div>Order toal: </div>
             <div>{fromatMoney(paymentSummary.totalCostCents)}</div>
           </div>
 
-          <button className="place-order-button button-primary">
+          <button
+            onClick={onPlaceOrder}
+            className="place-order-button button-primary"
+          >
             Place your order
           </button>
         </div>

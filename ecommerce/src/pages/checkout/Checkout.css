@@ -98,6 +98,10 @@
 .checkout-page .subtotal-row .payment-summary-money {
   border-top: 1px solid rgb(222, 222, 222);
 }
+.cart-quantity {
+  display: flex;
+  gap: 5px;
+}
 .checkout-page .total-row {
   padding-top: 18px;
   border-top: 1px solid rgb(222, 222, 222);

@@ -68,10 +68,9 @@ const Tracking = ({ cart }) => {
             {deliveryPercent === 100 ? "isDeilvered" : ""}
           </div>
         </div>
-        <div
-          className="progress-bar"
-          style={{ width: `${deliveryPercent}%` }}
-        ></div>
+        <div className="progress-bar-container">
+          <div className="progress-bar" style={{ width: `${1}%` }}></div>
+        </div>
       </div>
     </>
   );
