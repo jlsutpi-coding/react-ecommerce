@@ -21,6 +21,7 @@ export const OrderSummary = ({ deliveryOptions, cart, loadCart }) => {
                   <DeliveryOptions
                     cartItem={cartItem}
                     deliveryOptions={deliveryOptions}
+                    loadCart={loadCart}
                   />
                 </div>
               </div>

@@ -11,7 +11,6 @@ export const Product = ({ product, loadCart }) => {
     });
     await loadCart();
   };
-  console.log(quantity);
 
   return (
     <div key={product.id} className="product-container">
