@@ -5,15 +5,18 @@ import axios from "axios";
 export const CartItemDetail = ({ cartItem, loadCart }) => {
   const [isUpdating, setIsUpDating] = useState(false);
   const [quantity, setQuantity] = useState(cartItem.quantity);
-  console.log(loadCart);
 
-  console.log(isUpdating);
   const onUpdate = async () => {
     if (isUpdating) {
       await axios.put(`/api/cart-items/${cartItem.productId}`, { quantity });
       await loadCart();
     }
     setIsUpDating(!isUpdating);
+  };
+
+  const onDelete = async () => {
+    await axios.delete(`/api/cart-items/${cartItem.productId}`);
+    await loadCart();
   };
   return (
     <>
@@ -45,7 +48,12 @@ export const CartItemDetail = ({ cartItem, loadCart }) => {
           >
             Update
           </span>
-          <span className="update-quantity-link link-primary">Delete</span>
+          <span
+            onClick={onDelete}
+            className="update-quantity-link link-primary"
+          >
+            Delete
+          </span>
         </div>
       </div>
     </>
