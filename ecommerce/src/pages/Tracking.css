@@ -32,9 +32,16 @@
   font-weight: 600;
   margin-bottom: 10px;
 }
-.progress-bar {
-  border-radius: 15px;
-  background-color: rgb(25, 135, 84);
+
+.progress-bar-container {
   height: 25px;
+  border: 1px solid rgb(157, 154, 154);
+  border-radius: 40px;
+  overflow: hidden;
+}
+.progress-bar {
+  /* border-radius: ; */
+  background-color: rgb(25, 135, 84);
   width: 100%;
+  height: inherit;
 }
