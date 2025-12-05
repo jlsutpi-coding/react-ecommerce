@@ -1,10 +1,12 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import CheckMarkIcon from "../../assets/images/icons/checkmark.png";
+import { AppContext } from "../../AppContext";
 
-export const Product = ({ product, loadCart }) => {
+export const Product = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
+  const { loadCart } = useContext(AppContext);
 
   const addtoCartHandler = async () => {
     await axios.post("/api/cart-items", {

@@ -1,9 +1,11 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import { DeliveryOptions } from "./DeliveryOptions";
 import { CartItemDetail } from "./CartItemDetail";
 import { DeliveryDate } from "./DeliveryDate";
+import { AppContext } from "../../AppContext";
 
-export const OrderSummary = ({ deliveryOptions, cart, loadCart }) => {
+export const OrderSummary = ({ deliveryOptions }) => {
+  const { cart } = useContext(AppContext);
   return (
     <div className="order-summary">
       {deliveryOptions.length > 0 &&
@@ -17,11 +19,10 @@ export const OrderSummary = ({ deliveryOptions, cart, loadCart }) => {
                 <DeliveryDate selectedDeliveryOption={selectedDeliveryOption} />
 
                 <div className="cart-item-detail-grid">
-                  <CartItemDetail cartItem={cartItem} loadCart={loadCart} />
+                  <CartItemDetail cartItem={cartItem} />
                   <DeliveryOptions
                     cartItem={cartItem}
                     deliveryOptions={deliveryOptions}
-                    loadCart={loadCart}
                   />
                 </div>
               </div>

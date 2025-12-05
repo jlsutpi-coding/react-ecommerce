@@ -5,7 +5,7 @@ import "./HomePage.css";
 import { ProductGrid } from "./ProductGrid";
 import { useSearchParams } from "react-router-dom";
 
-function HomePage({ cart, loadCart }) {
+function HomePage() {
   const [searchParams] = useSearchParams();
   const search = searchParams.get("search");
   const [products, setProducts] = useState([]);
@@ -27,9 +27,9 @@ function HomePage({ cart, loadCart }) {
     <>
       <link rel="icon" href="favicon/home-favicon.png" />
       <title>Ecommerce Project</title>
-      <Header cart={cart} />
+      <Header />
       <div className="home-page">
-        <ProductGrid loadCart={loadCart} products={products} />
+        <ProductGrid products={products} />
       </div>
     </>
   );

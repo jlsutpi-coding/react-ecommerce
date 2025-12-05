@@ -1,8 +1,11 @@
 import dayjs from "dayjs";
 import { fromatMoney } from "../../utils/formatMoney";
 import axios from "axios";
+import { useContext } from "react";
+import { AppContext } from "../../AppContext";
 
-export const DeliveryOptions = ({ deliveryOptions, cartItem, loadCart }) => {
+export const DeliveryOptions = ({ deliveryOptions, cartItem }) => {
+  const { loadCart } = useContext(AppContext);
   return (
     <div className="delivery-option-container">
       <div className="delivery-option-title">Choose a delivery option:</div>

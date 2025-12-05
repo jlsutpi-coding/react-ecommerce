@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import dayjs from "dayjs";
 
-const Tracking = ({ cart }) => {
+const Tracking = () => {
   const [order, setOrder] = useState(null);
   const { orderId, productId } = useParams();
 
@@ -37,7 +37,7 @@ const Tracking = ({ cart }) => {
     <>
       <link rel="icon" href="favicon/tracking-favicon.png" />
       <title>Tracking</title>
-      <Header cart={cart} />
+      <Header />
 
       <div className="tracking-page">
         <Link to={"/orders"} style={{ color: "rgb(25, 135, 84)" }}>

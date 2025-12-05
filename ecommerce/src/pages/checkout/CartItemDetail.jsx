@@ -1,9 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { fromatMoney } from "../../utils/formatMoney";
 import axios from "axios";
+import { AppContext } from "../../AppContext";
 
-export const CartItemDetail = ({ cartItem, loadCart }) => {
+export const CartItemDetail = ({ cartItem }) => {
   const inputRef = useRef(null);
+  const { loadCart } = useContext(AppContext);
 
   const [isUpdating, setIsUpdating] = useState(false);
   const [quantity, setQuantity] = useState(cartItem.quantity);

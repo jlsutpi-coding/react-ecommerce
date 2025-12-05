@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import axios from "axios";
 
@@ -7,10 +7,12 @@ import "./Checkout.css";
 import { CheckoutHeader } from "./CheckoutHeader";
 import { OrderSummary } from "./OrderSummary";
 import { PaymentSummary } from "./PaymentSummary";
+import { AppContext } from "../../AppContext";
 
-function Checkout({ cart, loadCart }) {
+function Checkout() {
   const [deliveryOptions, setDeliveryOptions] = useState([]);
   const [paymentSummary, setPaymentSummary] = useState(null);
+  const { cart } = useContext(AppContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,17 +36,13 @@ function Checkout({ cart, loadCart }) {
       <link rel="icon" href="favicon/cart-favicon.png" />
 
       <title>Checkout</title>
-      <CheckoutHeader cart={cart} />
+      <CheckoutHeader />
 
       <div className="checkout-page">
         <div className="page-title">Review you order</div>
         <div className="checkout-grid">
-          <OrderSummary
-            cart={cart}
-            deliveryOptions={deliveryOptions}
-            loadCart={loadCart}
-          />
-          <PaymentSummary loadCart={loadCart} paymentSummary={paymentSummary} />
+          <OrderSummary deliveryOptions={deliveryOptions} />
+          <PaymentSummary paymentSummary={paymentSummary} />
         </div>
       </div>
     </>

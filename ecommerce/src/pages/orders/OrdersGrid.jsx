@@ -1,10 +1,13 @@
 import dayjs from "dayjs";
 import BuyAgainIcon from "../../assets/images/icons/buy-again.png";
 import { Link } from "react-router-dom";
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import axios from "axios";
+import { AppContext } from "../../AppContext";
 
-export const OrdersGrid = ({ order, loadCart }) => {
+export const OrdersGrid = ({ order }) => {
+  const { loadCart } = useContext(AppContext);
+
   return (
     <div className="order-details-grid">
       {order.products.map((orderProduct) => {
