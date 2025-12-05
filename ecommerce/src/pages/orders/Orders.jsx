@@ -5,7 +5,7 @@ import axios from "axios";
 import { OrdersHeader } from "./OrdersHeader";
 import { OrdersGrid } from "./OrdersGrid";
 
-function Orders({ cart, loadCart }) {
+function Orders() {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ function Orders({ cart, loadCart }) {
     <>
       <link rel="icon" href="favicon/orders-favicon.png" />
       <title> Orders</title>
-      <Header cart={cart} />
+      <Header />
       <div className="orders-page">
         <h4 className="orders-heading">Your Orders</h4>
 
@@ -30,7 +30,7 @@ function Orders({ cart, loadCart }) {
               return (
                 <div key={order.id} className="order-container">
                   <OrdersHeader order={order} />
-                  <OrdersGrid loadCart={loadCart} order={order} />
+                  <OrdersGrid order={order} />
                 </div>
               );
             })}

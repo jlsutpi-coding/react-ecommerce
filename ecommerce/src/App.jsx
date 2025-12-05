@@ -6,6 +6,7 @@ import { NotFound } from "./pages/NotFound";
 import Tracking from "./pages/Tracking";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { AppContext } from "./AppContext";
 
 // This makes axios available in the Console.
 // - Then, you can try running axios.post('/api/reset') in the Console.
@@ -27,32 +28,29 @@ window.axios = axios;
 function App() {
   const [cart, setCart] = useState([]);
 
+  useEffect(() => {
+    async function fetchCart() {
+      const response = await axios.get("/api/cart-items?expand=product");
+      setCart(response.data);
+    }
+    fetchCart();
+  }, []);
+
   const loadCart = async () => {
     const response = await axios.get("/api/cart-items?expand=product");
     setCart(response.data);
   };
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    loadCart();
-  }, []);
 
   return (
-    <Routes>
-      <Route path="/" element={<HomePage loadCart={loadCart} cart={cart} />} />
-      <Route
-        path="/checkout"
-        element={<Checkout cart={cart} loadCart={loadCart} />}
-      />
-      <Route
-        path="/orders"
-        element={<Orders loadCart={loadCart} cart={cart} />}
-      />
-      <Route path="*" element={<NotFound cart={cart} />} />
-      <Route
-        path="/tracking/:orderId/:productId"
-        element={<Tracking cart={cart} />}
-      />
-    </Routes>
+    <AppContext value={{ cart, loadCart }}>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/orders" element={<Orders />} />
+        <Route path="*" element={<NotFound />} />
+        <Route path="/tracking/:orderId/:productId" element={<Tracking />} />
+      </Routes>
+    </AppContext>
   );
 }
 

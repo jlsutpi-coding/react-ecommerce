@@ -4,11 +4,14 @@ import MobileLogoWhite from "../assets/images/mobile-logo-white.png";
 import SearchIcon from "../assets/images/icons/search-icon.png";
 import CartIcon from "../assets/images/icons/cart-icon.png";
 import LogoWhite from "../assets/images/logo-white.png";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
+import { AppContext } from "../AppContext";
 
-export function Header({ cart }) {
+export function Header() {
   const inputRef = useRef(null);
   const navigate = useNavigate();
+  const { cart } = useContext(AppContext);
+
   const totalQuantity = cart.reduce(
     (ac, cartItem) => ac + cartItem.quantity,
     0

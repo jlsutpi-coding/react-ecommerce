@@ -3,9 +3,12 @@ import "./CheckoutHeader.css";
 import Logo from "../../assets/images/logo.png";
 import MobileLogo from "../../assets/images/mobile-logo.png";
 import CheckoutLockIcon from "../../assets/images/icons/checkout-lock-icon.png";
+import { useContext } from "react";
+import { AppContext } from "../../AppContext.js";
 
-export const CheckoutHeader = ({ cart }) => {
-  const totalQuantity = cart.reduce((ac, cv) => ac + cv.quantity, 0);
+export const CheckoutHeader = () => {
+  const { cart } = useContext(AppContext);
+  const totalQuantity = cart?.reduce((ac, cv) => ac + cv.quantity, 0);
   return (
     <div className="checkout-header">
       <div className="checkout-left-section">

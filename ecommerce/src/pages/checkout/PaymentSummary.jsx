@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { fromatMoney } from "../../utils/formatMoney";
 import axios from "axios";
+import { useContext } from "react";
+import { AppContext } from "../../AppContext";
 
-export const PaymentSummary = ({ paymentSummary, loadCart }) => {
+export const PaymentSummary = ({ paymentSummary }) => {
   const navigate = useNavigate();
+  const { loadCart } = useContext(AppContext);
 
   const onPlaceOrder = async () => {
     await axios.post("/api/orders");
